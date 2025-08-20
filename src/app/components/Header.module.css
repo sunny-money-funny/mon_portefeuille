@@ -1,0 +1,58 @@
+/* components/Header.module.css */
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9); /* 흰색 배경에 투명도 추가 */
+  border-bottom: 1px solid #e0e0e0; /* 옅은 회색 테두리 */
+  padding: 1.5rem 2rem; /* 패딩을 약간 늘려 여유 공간 확보 */
+  z-index: 100;
+  backdrop-filter: blur(5px); /* 블러 효과 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* 은은한 그림자 */
+  transition: all 0.3s ease-in-out;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333; /* 링크 색상을 어두운 회색으로 변경 */
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+  padding-bottom: 0.25rem;
+}
+
+.nav a:hover {
+  color: #ff7043; /* 호버 시 포인트 컬러로 변경 */
+  border-bottom: 2px solid #ff7043; /* 호버 시 밑줄 효과 */
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem 1.5rem;
+  }
+  .nav {
+    gap: 1.5rem;
+  }
+  .nav a {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nav a {
+    font-size: 0.85rem;
+  }
+}

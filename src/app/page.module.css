@@ -1,167 +1,230 @@
-.page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+/* page.module.css */
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
+.container {
+  min-height: 100vh;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background-color: white; /* 배경색을 흰색으로 변경 */
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
-}
-
-.main {
+/* Sunny Hero Section */
+.sunny {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
-}
-
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
-  margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
-}
-
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
+  align-items: center;
+  background: white;
+  color: #333;
+  text-align: center;
+  position: relative;
+  /* 애니메이션 추가 */
+  animation: fadeIn 1s ease-in-out;
+}
+
+.sunny h1 {
+  font-size: 4rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: -2px;
+  color: #ff7043; /* 포인트 컬러로 변경 */
+}
+
+.sunny p {
+  font-size: 1.4rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+/* Content Sections */
+.about,
+.projects,
+.skills,
+.contact {
+  max-width: 1000px; /* 최대 너비를 줄여 더 깔끔하게 */
+  margin: 0 auto;
+  padding: 8rem 2rem; /* 패딩을 늘려 여백 확보 */
+  /* 애니메이션 추가 */
+  animation: slideInUp 0.8s ease-out;
+}
+
+.about {
+  background: white;
+}
+
+.projects {
+  background: #f8f8f8; /* 섹션별 배경색 구분 */
+}
+
+.skills {
+  background: white;
+}
+
+.contact {
+  background: #f8f8f8;
+}
+
+.about h2,
+.projects h2,
+.skills h2,
+.contact h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #ff7043; /* 포인트 컬러 유지 */
+  margin-bottom: 3rem;
+  text-align: center;
+  border-bottom: 2px solid #ff7043; /* 제목에 미니멀한 밑줄 추가 */
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.about p,
+.contact p {
+  font-size: 1.1rem; /* 폰트 크기를 약간 줄여서 세련되게 */
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* Projects Grid */
+.projectList {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(320px, 1fr)
+  ); /* 최소 너비를 줄여 반응형 개선 */
+  gap: 2rem; /* 간격 줄여서 더 촘촘하게 */
+  margin-top: 3rem; /* 애니메이션 추가 */
+  animation: fadeIn 1s ease-in-out;
+}
+
+.projectCard {
+  background: white;
+  padding: 2rem; /* 패딩을 약간 줄임 */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* 더 부드러운 그림자 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.projectCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.projectCard h3 {
+  font-size: 1.4rem;
+  color: #333; /* 제목 색상을 검은색으로 변경 */
+  margin-bottom: 0.75rem;
   font-weight: 500;
 }
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
+.projectCard p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 1rem;
 }
 
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 158px;
+/* Contact Links */
+.contact p {
+  margin-bottom: 1rem;
 }
 
-.footer {
-  grid-row-start: 3;
+.contact a {
+  text-decoration: none;
+  font-weight: 400;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.contact a:hover {
+  border-bottom-color: #ff7043;
+}
+
+/* New Skills Section Styles */
+.skillsList {
   display: flex;
-  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-top: 3rem;
 }
 
-.footer a {
+.skillItem {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
+  font-size: 1rem;
+  color: #444;
+  transition: transform 0.3s ease;
 }
 
-.footer img {
-  flex-shrink: 0;
+.skillItem:hover {
+  transform: translateY(-5px);
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
+.skillItem svg {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0.5rem;
+  fill: #ff7043; /* 아이콘 색상을 포인트 컬러로 변경 */
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .sunny h1 {
+    font-size: 3rem;
   }
 
-  .main {
-    align-items: center;
+  .sunny p {
+    font-size: 1.2rem;
   }
 
-  .main ol {
-    text-align: center;
+  .about,
+  .projects,
+  .skills,
+  .contact {
+    padding: 6rem 1.5rem;
   }
 
-  .ctas {
-    flex-direction: column;
+  .about h2,
+  .projects h2,
+  .skills h2,
+  .contact h2 {
+    font-size: 2rem;
   }
 
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
+  .projectList {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  a.secondary {
-    min-width: auto;
+  .projectCard {
+    padding: 1.5rem;
   }
-
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+}
+/* --- Keyframe Animations --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
