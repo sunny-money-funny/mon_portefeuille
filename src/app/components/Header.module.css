@@ -3,14 +3,25 @@
 .header {
   position: fixed;
   top: 0;
+  left: 0; /* 좌측 정렬 추가 */
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.9); /* 흰색 배경에 투명도 추가 */
-  border-bottom: 1px solid #e0e0e0; /* 옅은 회색 테두리 */
-  padding: 1.5rem 2rem; /* 패딩을 약간 늘려 여유 공간 확보 */
+  display: flex; /* flexbox를 사용하여 내부 요소를 정렬 */
+  justify-content: space-between; /* 양 끝 정렬 (로고, 햄버거 메뉴) */
+  align-items: center; /* 세로 중앙 정렬 */
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1.5rem 2rem;
   z-index: 100;
-  backdrop-filter: blur(5px); /* 블러 효과 */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* 은은한 그림자 */
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease-in-out;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #333;
+  text-decoration: none;
 }
 
 .nav {
@@ -21,7 +32,7 @@
 
 .nav a {
   text-decoration: none;
-  color: #333; /* 링크 색상을 어두운 회색으로 변경 */
+  color: #333;
   font-weight: 500;
   font-size: 1rem;
   transition: color 0.2s ease, border-bottom 0.2s ease;
@@ -29,8 +40,55 @@
 }
 
 .nav a:hover {
-  color: #ff7043; /* 호버 시 포인트 컬러로 변경 */
-  border-bottom: 2px solid #ff7043; /* 호버 시 밑줄 효과 */
+  color: #ff7043;
+  border-bottom: 2px solid #ff7043;
+}
+
+/* 햄버거 메뉴 버튼 */
+.menuToggle {
+  display: none; /* 기본적으로는 숨김 */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101;
+  width: 30px;
+  height: 24px;
+  position: relative;
+}
+
+.menuToggle .bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #333;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  position: absolute;
+  left: 0;
+}
+.menuToggle .bar:nth-child(1) {
+  top: 0;
+}
+.menuToggle .bar:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.menuToggle .bar:nth-child(3) {
+  bottom: 0;
+}
+
+/* 햄버거 메뉴가 활성화되었을 때 (JS로 추가될 클래스) */
+.menuToggle.active .bar:nth-child(1) {
+  transform: rotate(45deg);
+  top: 50%;
+}
+.menuToggle.active .bar:nth-child(2) {
+  opacity: 0;
+}
+.menuToggle.active .bar:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 50%;
 }
 
 /* 반응형 */
@@ -38,21 +96,35 @@
   .header {
     padding: 1rem 1.5rem;
   }
-  .nav {
-    gap: 1.5rem;
-  }
-  .nav a {
-    font-size: 0.9rem;
-  }
-}
 
-@media (max-width: 480px) {
+  /* 모바일에서 햄버거 메뉴 보이기 */
+  .menuToggle {
+    display: block;
+  }
+
+  /* 모바일에서 네비게이션 숨기기 */
   .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    gap: 2rem;
+    transform: translateX(100%); /* 메뉴를 오른쪽 화면 밖으로 이동 */
+    transition: transform 0.4s ease-in-out;
   }
+
+  /* 메뉴가 활성화되면 나타나게 하기 */
+  .nav.active {
+    transform: translateX(0); /* 다시 화면 안으로 이동 */
+  }
+
   .nav a {
-    font-size: 0.85rem;
+    font-size: 1.2rem;
   }
 }
