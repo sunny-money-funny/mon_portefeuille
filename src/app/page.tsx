@@ -164,7 +164,7 @@ export default function Home() {
         <section id="sunny" className={styles.sunny}>
           <h1>Welcome to Sunny World</h1>
           <p>세상에 관심 많은 프론트엔드 개발자</p>
-          <p>☀️조정선입니다☀️</p>
+          <p>☀️조정선☀️입니다</p>
         </section>
 
         {/* About */}
