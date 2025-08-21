@@ -3,68 +3,17 @@
 import React from "react";
 import Image from "next/image";
 import styles from "./ProjectModal.module.css";
-
-// 타입별 블록 정의
-interface HeadlineBlock {
-  type: "headline";
-  data: string;
-}
-
-interface ListBlock {
-  type: "list";
-  data: string[];
-}
-
-interface ImageBlock {
-  type: "image";
-  data: {
-    src: string;
-    alt: string;
-    width: number;
-  };
-}
-
-interface DividerBlock {
-  type: "divider";
-  data?: null;
-}
-
-interface AboutBlock {
-  type: "about";
-  data: {
-    duration: string;
-    goal: string;
-    stack: string;
-    contribution: string;
-  };
-}
-
-interface WhatIDidBlock {
-  type: "whatIDid";
-  data: string[];
-}
-
-interface WhatILearnedBlock {
-  type: "whatILearned";
-  data: string;
-}
-
-type ProjectContent =
-  | HeadlineBlock
-  | ListBlock
-  | ImageBlock
-  | DividerBlock
-  | AboutBlock
-  | WhatIDidBlock
-  | WhatILearnedBlock;
-
-interface Project {
-  title: string;
-  description: string;
-  githubUrl: string;
-  subtitle?: string;
-  content: ProjectContent[];
-}
+import {
+  Project,
+  ProjectContent,
+  HeadlineBlock,
+  ListBlock,
+  ImageBlock,
+  DividerBlock,
+  AboutBlock,
+  WhatIDidBlock,
+  WhatILearnedBlock,
+} from "../../../types/project";
 
 interface ProjectModalProps {
   project: Project | null;

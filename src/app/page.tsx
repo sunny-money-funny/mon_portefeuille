@@ -9,11 +9,12 @@ import Header from "./components/Header";
 import ProjectModal from "./components/ProjectModal";
 import tsimg from "../../public/ts.png";
 import reactimg from "../../public/react.png";
+import { Project } from "../../types/project";
 
 export default function Home() {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const projects = [
+  const projects: Project[] = [
     {
       id: "polexible",
       title: "Polexible",
@@ -31,7 +32,7 @@ export default function Home() {
             alt: "Polexible 로고 디자인1",
             width: 100,
           },
-        }, // 이미지1
+        },
         {
           type: "image",
           data: {
@@ -39,7 +40,7 @@ export default function Home() {
             alt: "Polexible 로고 디자인2",
             width: 200,
           },
-        }, // 이미지2
+        },
         {
           type: "list",
           data: [
@@ -108,7 +109,7 @@ export default function Home() {
           type: "image",
           data: {
             src: "/images/roomo_01.png",
-            alt: "공간 제공자 화면",
+            alt: "공간 제공자 에이전트 대화 화면",
             width: 300,
           },
         },
@@ -116,16 +117,17 @@ export default function Home() {
           type: "image",
           data: {
             src: "/images/roomo_02.png",
-            alt: "공간 대여자 예약 화면",
+            alt: "공간 대여자 예약 히스토리 화면",
             width: 300,
           },
-        }, // 이미지2
+        },
         {
           type: "list",
           data: [
             "두 사용자 역할을 고려한 UI/UX 설계: 공간 대여자와 제공자의 니즈를 반영해 직관적인 화면 구성을 설계하고, 역할 전환 시 혼란을 최소화했습니다.",
             "AI 기반 추천 및 예약 기능과 연동된 사용자 친화적 인터페이스: LLM 멀티 에이전트 시스템과 연동되는 대화형 UI를 구현하여 사용자 요청과 AI 응답이 원활히 연결되도록 설계했습니다.",
             "효율적인 상태 관리와 비동기 데이터 처리: React의 useState와 useEffect를 활용해 API 호출과 상태 관리를 체계적으로 구현했습니다.",
+            "client-side routing을 통해 새로고침 없이 자연스러운 화면 전환 구현",
           ],
         },
         {
