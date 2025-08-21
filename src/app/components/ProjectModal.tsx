@@ -4,15 +4,66 @@ import React from "react";
 import Image from "next/image";
 import styles from "./ProjectModal.module.css";
 
+// 타입별 블록 정의
+interface HeadlineBlock {
+  type: "headline";
+  data: string;
+}
+
+interface ListBlock {
+  type: "list";
+  data: string[];
+}
+
+interface ImageBlock {
+  type: "image";
+  data: {
+    src: string;
+    alt: string;
+    width: number;
+  };
+}
+
+interface DividerBlock {
+  type: "divider";
+  data?: null;
+}
+
+interface AboutBlock {
+  type: "about";
+  data: {
+    duration: string;
+    goal: string;
+    stack: string;
+    contribution: string;
+  };
+}
+
+interface WhatIDidBlock {
+  type: "whatIDid";
+  data: string[];
+}
+
+interface WhatILearnedBlock {
+  type: "whatILearned";
+  data: string;
+}
+
+type ProjectContent =
+  | HeadlineBlock
+  | ListBlock
+  | ImageBlock
+  | DividerBlock
+  | AboutBlock
+  | WhatIDidBlock
+  | WhatILearnedBlock;
+
 interface Project {
   title: string;
   description: string;
   githubUrl: string;
   subtitle?: string;
-  content: {
-    type: string;
-    data: any;
-  }[];
+  content: ProjectContent[];
 }
 
 interface ProjectModalProps {
@@ -33,7 +84,6 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
         <h3 className={styles.modalTitle}>{project.title}</h3>
         <p className={styles.modalSubtitle}>{project.subtitle}</p>
 
-        {/* 콘텐츠 블록을 순회하며 동적으로 렌더링 */}
         {project.content.map((block, index) => {
           switch (block.type) {
             case "headline":
@@ -42,14 +92,16 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                   {block.data}
                 </h4>
               );
+
             case "list":
               return (
                 <ul key={index} className={styles.pointList}>
-                  {block.data.map((item: string, i: number) => (
-                    <li key={i} dangerouslySetInnerHTML={{ __html: item }}></li>
+                  {block.data.map((item, i) => (
+                    <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
                   ))}
                 </ul>
               );
+
             case "image":
               return (
                 <div key={index} className={styles.imageWrapper}>
@@ -63,8 +115,10 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                   <p className={styles.imageAltText}>{block.data.alt}</p>
                 </div>
               );
+
             case "divider":
               return <hr key={index} className={styles.divider} />;
+
             case "about":
               return (
                 <div key={index} className={styles.aboutWrapper}>
@@ -89,17 +143,19 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                   </div>
                 </div>
               );
+
             case "whatIDid":
               return (
                 <div key={index} className={styles.didWrapper}>
                   <h4 className={styles.subSectionTitle}>What I Did</h4>
                   <ul className={styles.didList}>
-                    {block.data.map((item: string, i: number) => (
+                    {block.data.map((item, i) => (
                       <li key={i}>{item}</li>
                     ))}
                   </ul>
                 </div>
               );
+
             case "whatILearned":
               return (
                 <div key={index}>
@@ -107,6 +163,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                   <p className={styles.learnedText}>{block.data}</p>
                 </div>
               );
+
             default:
               return null;
           }
