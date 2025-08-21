@@ -50,17 +50,17 @@ export default function Home() {
         {
           type: "image",
           data: {
-            src: "/images/polexible_03.png",
+            src: "/images/polexible3.png",
             alt: "문서 대시보드",
-            width: 300,
+            width: 500,
           },
         },
         {
           type: "image",
           data: {
-            src: "/images/polexible_04.png",
+            src: "/images/polexible4.png",
             alt: "문서 편집 및 챗봇 화면",
-            width: 300,
+            width: 500,
           },
         },
         {
@@ -108,17 +108,17 @@ export default function Home() {
         {
           type: "image",
           data: {
-            src: "/images/roomo_01.png",
+            src: "/images/roomo1.png",
             alt: "공간 제공자 에이전트 대화 화면",
-            width: 300,
+            width: 500,
           },
         },
         {
           type: "image",
           data: {
-            src: "/images/roomo_02.png",
+            src: "/images/roomo2.png",
             alt: "공간 대여자 예약 히스토리 화면",
-            width: 300,
+            width: 500,
           },
         },
         {

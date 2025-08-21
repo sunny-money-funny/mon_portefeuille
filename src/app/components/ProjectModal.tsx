@@ -117,15 +117,16 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
               return null;
           }
         })}
-
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.projectLink}
-        >
-          GitHub Repository
-        </a>
+        <div className={styles.linkContainer}>
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.projectLink}
+          >
+            GitHub Repository
+          </a>
+        </div>
       </div>
     </div>
   );
